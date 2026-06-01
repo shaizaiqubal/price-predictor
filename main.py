@@ -22,6 +22,28 @@ def train_model():
     return model
 
 def main():
+    import streamlit as st
+    from googleapiclient.discovery import build
+    
+    API_KEY = st.secrets["YOUTUBE_API_KEY"]
+    
+    st.write("Starting")
+    
+    youtube = build(
+        "youtube",
+        "v3",
+        developerKey=API_KEY,
+        cache_discovery=False
+    )
+    
+    st.write("Built client")
+    
+    response = youtube.videos().list(
+        part="snippet",
+        id="dQw4w9WgXcQ"
+    ).execute()
+    
+    st.write(response)
     st.title('Housing price predictor')
     st.write('Input House size')
     model=train_model()
