@@ -3,3 +3,5 @@ plotly
 pandas
 numpy
 scikit-learn
+google-api-python-client
+requests
